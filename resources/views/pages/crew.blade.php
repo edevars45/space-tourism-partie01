@@ -1,98 +1,133 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
-@section('title', 'Équipage — Space Tourism')
+@section('title', 'Crew — Space Tourism')
+@section('meta_description', "Rencontrez l'équipage : commandant, spécialiste, pilote, ingénieur.")
+@section('og_title', 'Crew — Space Tourism')
+@section('og_description', "Rencontrez l'équipage : commandant, spécialiste, pilote, ingénieur.")
 
 @section('content')
-  <section class="text-center">
-    <h1 class="uppercase tracking-widest text-gray-400 text-lg mb-10">
-      02 Rencontre ton équipage
-    </h1>
 
-    {{-- Commander — Douglas Hurley --}}
-    <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-16 mb-24">
-      <div class="flex-1 text-left">
-        <h2 class="uppercase text-gray-400 text-xl">Commandant</h2>
-        <h3 class="text-5xl font-bold uppercase">Douglas Hurley</h3>
-        <p class="mt-6 text-lg text-gray-300 max-w-md">
-          Douglas Gerald Hurley est un ingénieur américain, ancien pilote des Marines
-          et ancien astronaute de la NASA. Il a commandé Crew Dragon Demo-2,
-          marquant une étape clef des vols habités commerciaux.
-        </p>
-        <div class="mt-8 flex gap-3">
-          <span class="w-3 h-3 rounded-full bg-white inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-        </div>
-      </div>
-      <div class="flex-1 flex justify-center">
-        <img src="{{ asset('images/crew/commander.png') }}" alt="Douglas Hurley" class="h-96 object-contain">
-      </div>
-    </div>
+@php
+    // Dossier d’images (selon ton arborescence)
+    $imgBase = 'assets/images/crew';
 
-    {{-- Pilot — Victor Glover --}}
-    <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-16 mb-24">
-      <div class="flex-1 text-left">
-        <h2 class="uppercase text-gray-400 text-xl">Pilote</h2>
-        <h3 class="text-5xl font-bold uppercase">Victor Glover</h3>
-        <p class="mt-6 text-lg text-gray-300 max-w-md">
-          Victor Glover est pilote de la NASA et ancien commandant de l’US Navy.
-          Il fut le premier Afro-Américain à effectuer une mission de longue durée
-          à bord de la Station spatiale internationale.
-        </p>
-        <div class="mt-8 flex gap-3">
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-white inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-        </div>
-      </div>
-      <div class="flex-1 flex justify-center">
-        <img src="{{ asset('images/crew/pilot.png') }}" alt="Victor Glover" class="h-96 object-contain">
-      </div>
-    </div>
+    // Données statiques maquette (Partie 01)
+    $crew = [
+        'commander' => [
+            'role'  => 'Commander',
+            'name'  => 'Douglas Hurley',
+            'file'  => 'commander.png',
+            'blurb' => "Ancien astronaute et pilote d’essai. Il dirige les opérations avec calme et précision,
+                        assurant la sécurité de l’équipage et le succès de la mission."
+        ],
+        'specialist' => [
+            'role'  => 'Mission Specialist',
+            'name'  => 'Mark Shuttleworth',
+            'file'  => 'specialist.png',
+            'blurb' => "Entrepreneur et spécialiste mission. Il coordonne les expériences à bord et les procédures scientifiques."
+        ],
+        'pilot' => [
+            'role'  => 'Pilot',
+            'name'  => 'Victor Glover',
+            'file'  => 'pilot.png',
+            'blurb' => "Pilote d’essai chevronné, responsable de la navigation et des manœuvres complexes."
+        ],
+        'engineer' => [
+            'role'  => 'Flight Engineer',
+            'name'  => 'Anousheh Ansari',
+            'file'  => 'engineer.png',
+            'blurb' => "Ingénieure de vol, garante des systèmes de bord et de la maintenance critique."
+        ],
+    ];
 
-    {{-- Engineer — Anousheh Ansari --}}
-    <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-16 mb-24">
-      <div class="flex-1 text-left">
-        <h2 class="uppercase text-gray-400 text-xl">Ingénieure</h2>
-        <h3 class="text-5xl font-bold uppercase">Anousheh Ansari</h3>
-        <p class="mt-6 text-lg text-gray-300 max-w-md">
-          Anousheh Ansari est une ingénieure et entrepreneuse irano-américaine,
-          première femme à financer elle-même son voyage spatial et première femme
-          musulmane dans l’espace.
-        </p>
-        <div class="mt-8 flex gap-3">
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-white inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-        </div>
-      </div>
-      <div class="flex-1 flex justify-center">
-        <img src="{{ asset('images/crew/engineer.png') }}" alt="Anousheh Ansari" class="h-96 object-contain">
-      </div>
-    </div>
+    // Membre actif par défaut
+    $activeKey = 'commander';
+@endphp
 
-    {{-- Specialist — Mark Shuttleworth --}}
-    <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-16">
-      <div class="flex-1 text-left">
-        <h2 class="uppercase text-gray-400 text-xl">Spécialiste</h2>
-        <h3 class="text-5xl font-bold uppercase">Mark Shuttleworth</h3>
-        <p class="mt-6 text-lg text-gray-300 max-w-md">
-          Mark Shuttleworth est un entrepreneur sud-africain, premier touriste spatial africain,
-          fondateur de Canonical et créateur d’Ubuntu.
-        </p>
-        <div class="mt-8 flex gap-3">
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-gray-500 inline-block"></span>
-          <span class="w-3 h-3 rounded-full bg-white inline-block"></span>
+<div class="container py-3 py-md-4">
+    <h1 class="mb-4 mb-md-5 h2">Crew</h1>
+
+    <div class="row g-4 align-items-start">
+        {{-- Colonne image --}}
+        <div class="col-12 col-lg-6 order-1">
+            <div class="tab-content">
+                @foreach($crew as $key => $c)
+                    @php $active = $key === $activeKey ? 'show active' : ''; @endphp
+                    <div class="tab-pane fade {{ $active }}" id="img-{{ $key }}">
+                        <figure class="text-center">
+                            <img
+                                class="img-fluid"
+                                src="{{ asset($imgBase . '/' . $c['file']) }}"
+                                alt="{{ $c['role'] }} — {{ $c['name'] }}"
+                                width="480" height="480"
+                                loading="eager"
+                            >
+                            <figcaption class="visually-hidden">{{ $c['role'] }} — {{ $c['name'] }}</figcaption>
+                        </figure>
+                    </div>
+                @endforeach
+            </div>
         </div>
-      </div>
-      <div class="flex-1 flex justify-center">
-        <img src="{{ asset('images/crew/specialist.png') }}" alt="Mark Shuttleworth" class="h-96 object-contain">
-      </div>
+
+        {{-- Colonne texte + “pagination” par puces (style onboarding) --}}
+        <div class="col-12 col-lg-6 order-2">
+            {{-- Petits ronds de sélection (accessibles) --}}
+            <div class="d-flex gap-2 mb-3" role="tablist" aria-label="Choix du membre d’équipage">
+                @foreach($crew as $key => $c)
+                    @php $isActive = $key === $activeKey; @endphp
+                    <button
+                        class="btn {{ $isActive ? 'btn-dark' : 'btn-outline-secondary' }} rounded-circle p-0"
+                        style="width: 14px; height: 14px;"
+                        id="dot-{{ $key }}"
+                        data-bs-toggle="tab"
+                        data-bs-target="#pane-{{ $key }}"
+                        type="button"
+                        role="tab"
+                        aria-controls="pane-{{ $key }}"
+                        aria-selected="{{ $isActive ? 'true' : 'false' }}"
+                        title="{{ $c['role'] }} — {{ $c['name'] }}"
+                    ></button>
+                @endforeach
+            </div>
+
+            {{-- Panneaux de contenu --}}
+            <div class="tab-content">
+                @foreach($crew as $key => $c)
+                    @php $active = $key === $activeKey ? 'show active' : ''; @endphp
+                    <div
+                        class="tab-pane fade {{ $active }}"
+                        id="pane-{{ $key }}"
+                        role="tabpanel"
+                        aria-labelledby="dot-{{ $key }}"
+                        tabindex="0"
+                    >
+                        <p class="text-uppercase text-muted small mb-1">{{ $c['role'] }}</p>
+                        <h2 class="h3 mb-2">{{ $c['name'] }}</h2>
+                        <p class="mb-0">{{ $c['blurb'] }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
-  </section>
+</div>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const dots = document.querySelectorAll('[id^="dot-"][data-bs-toggle="tab"]');
+    dots.forEach(btn => {
+        btn.addEventListener('shown.bs.tab', (ev) => {
+            const id = ev.target.id;               // ex: dot-commander
+            const slug = id.replace('dot-', '');   // -> commander
+
+            // je synchronise l’image
+            document.querySelectorAll('[id^="img-"]').forEach(p => p.classList.remove('show','active'));
+            const imgPane = document.getElementById('img-' + slug);
+            if (imgPane) imgPane.classList.add('show','active');
+        });
+    });
+});
+</script>
+@endpush
+
 @endsection

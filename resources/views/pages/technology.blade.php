@@ -1,25 +1,32 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
-@section('title', 'Technologies')
+@section('title', 'Technology — Space Tourism')
+@section('meta_description', 'Découvrez les technologies qui rendent le tourisme spatial possible.')
+@section('og_title', 'Technology — Space Tourism')
+@section('og_description', 'Découvrez les technologies qui rendent le tourisme spatial possible.')
 
 @section('content')
-  <h1 class="text-2xl font-bold mb-6">03 TECHNOLOGIES DE LANCEMENT SPATIAL</h1>
+<div class="container">
+    <div class="row gy-4 align-items-center">
+        {{-- Image --}}
+        <div class="col-12 col-lg-6 text-center order-lg-2">
+            <img class="tech-img" src="{{ asset('images/technology/launch-vehicle.jpg') }}" alt="Launch vehicle">
+        </div>
 
-  <section class="mb-10">
-    <h2 class="text-xl font-semibold">LANCEUR</h2>
-    <p class="mb-4">Le lanceur spatial est une fusée utilisée pour transporter une charge utile depuis la surface de la Terre jusque dans l’espace. C’est la première étape de tout voyage spatial.</p>
-   <img src="{{ asset('images/technology/launch-vehicle.jpg') }}" alt="Launch Vehicle">
-  </section>
+        {{-- Texte --}}
+        <div class="col-12 col-lg-6 order-lg-1">
+            <p class="hero-kicker mb-1">Space launch 101</p>
+            <h2 class="hero-title h1 mb-2">Launch Vehicle</h2>
+            <p class="mb-4">
+                Des lanceurs de nouvelle génération, réutilisables et optimisés pour des vols plus fréquents.
+                Performances, fiabilité et confort — la triade au cœur de nos innovations.
+            </p>
 
-  <section class="mb-10">
-    <h2 class="text-xl font-semibold">BASE DE LANCEMENT</h2>
-    <p class="mb-4">Un spaceport fonctionne comme un aéroport mais pour les fusées. C’est le lieu d’où partent et reviennent les missions spatiales.</p>
-    <img src="{{ asset('images/technology/spaceport.jpg') }}" alt="Spaceport">
-  </section>
-
-  <section class="mb-10">
-    <h2 class="text-xl font-semibold">CAPSULE SPATIALE</h2>
-    <p class="mb-4">Une capsule spatiale est utilisée pour transporter l’équipage dans l’espace et les ramener sur Terre en toute sécurité.</p>
-    <img src="{{ asset('images/technology/capsule.jpg') }}" alt="Capsule Spatiale">
-  </section>
+            <div class="row row-cols-2 g-3">
+                <div><small>Hauteur</small><div class="h5 text-white">70 m</div></div>
+                <div><small>Poussée</small><div class="h5 text-white">7 600 kN</div></div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
